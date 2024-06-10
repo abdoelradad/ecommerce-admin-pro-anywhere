@@ -2,32 +2,63 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+@layer base {
+  .btn {
+    @apply relative px-3 py-2 overflow-hidden font-semibold text-white transition-all duration-700 shadow-md cursor-pointer bg-dark hover:bg-pink;
   }
-}
-
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
-}
-
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+  .link {
+    @apply flex items-center p-3 ml-1 transition-all duration-300 border-b border-gray-700 md:ml-4 hover:bg-gray-700 hover:bg-opacity-20;
+  }
+  .btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ff2e63;
+    transition: ease-in 0.3s;
+  }
+  .btn::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 3px;
+    background-color: #ff2e63;
+    transition: ease-in 0.3s;
+  }
+  .btn:hover::before {
+    width: 100%;
+  }
+  .btn:hover::after {
+    width: 100%;
+  }
+  label {
+    @apply block mb-1;
+  }
+  input,
+  textarea,
+  select {
+    @apply w-full px-2 py-2 transition-all duration-300 border border-gray-600 shadow-sm outline-none bg-dark;
+    @apply mb-2 resize-none;
+  }
+  input:focus,
+  textarea:focus,
+  select:focus {
+    @apply border-gray-400 rounded-md shadow-lg outline-none;
+  }
+  table.basic {
+    @apply w-full;
+  }
+  table.basic thead tr td {
+    @apply text-center bg-pink;
+  }
+  table.basic tr td {
+    @apply p-1 text-sm border border-gray-500 md:text-lg;
+  }
+  table.basic a {
+    @apply inline-flex gap-1 px-2 py-1 mr-1 text-sm font-semibold text-white bg-dark;
   }
 }
